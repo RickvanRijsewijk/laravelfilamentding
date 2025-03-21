@@ -2,10 +2,9 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Fortify\Events\TwoFactorAuthenticationChallenged;
-use Laravel\Fortify\Events\TwoFactorAuthenticationEnabled;
+use Illuminate\Support\Facades\View;
+use App\Models\Article;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,6 +21,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-       //
+        View::composer('components.mainheader', function ($view) {
+            $articles = Article::with('category')
+                ->whereNotNull('published_at')
+                ->get()
+                ->groupBy(function($article) {
+                    return $article->category ? $article->category->name : 'Uncategorized';
+                });
+                
+            $view->with('articles', $articles);
+        });
     }
 }

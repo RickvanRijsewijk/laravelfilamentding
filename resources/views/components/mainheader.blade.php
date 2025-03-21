@@ -134,7 +134,7 @@
                             
                         </li>
                     </ul>
-
+                        
                 </div>
             </nav>
         </div>
@@ -146,7 +146,7 @@
                     <ul class="nav">
                         <li class="nav-item dropdown">
                             <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown">
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Werken Onder Architectuur
                                 <i class="fas fa-chevron-down"></i>
                             </a>
