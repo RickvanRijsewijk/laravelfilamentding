@@ -17,6 +17,7 @@ class SettingsResource extends Resource
 
     protected static ?string $navigationLabel = 'Settings';
     protected static ?string $navigationIcon = 'heroicon-o-cog';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-cog';
     protected static ?string $navigationGroup = 'Settings';
     protected static ?int $navigationSort = 100;
 

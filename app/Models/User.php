@@ -11,6 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Filament\Panel;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable implements FilamentUser
 {
@@ -46,6 +47,17 @@ class User extends Authenticatable implements FilamentUser
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($user) {
+            if ($user->isDirty('password')) {
+                $user->password = Hash::make($user->password);
+            }
+        });
+    }
 
     public function canAccessPanel(Panel $panel): bool
     {

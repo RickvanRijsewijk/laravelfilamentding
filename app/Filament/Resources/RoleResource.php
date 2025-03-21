@@ -23,6 +23,7 @@ class RoleResource extends Resource
     protected static ?string $model = ModelsRole::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-shield-check';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-shield-check';
     protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
@@ -95,4 +96,9 @@ class RoleResource extends Resource
     // {
     //     return parent::getEloquentQuery()->where('name', '!=', 'admin');
     // }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
+    }
 }

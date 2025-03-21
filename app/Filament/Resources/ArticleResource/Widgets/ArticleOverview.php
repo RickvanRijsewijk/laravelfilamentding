@@ -68,7 +68,7 @@ class ArticleOverview extends BaseWidget
 
         if ($user->hasRole('admin')) {
             $stats[] = Stat::make('Total Users', User::count())
-                ->description("Total users count")
+                ->description("Total user accounts")
                 ->descriptionIcon('heroicon-s-user')
                 ->color('info');
         }

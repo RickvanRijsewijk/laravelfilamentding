@@ -21,6 +21,7 @@ class PermissionResource extends Resource
     protected static ?string $model = ModelsPermission::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-key';
+    protected static ?string $activeNavigationIcon = 'heroicon-s-key';
     protected static ?string $navigationGroup = 'Settings';
 
     public static function form(Form $form): Form
@@ -78,5 +79,10 @@ class PermissionResource extends Resource
             'create' => Pages\CreatePermission::route('/create'),
             'edit' => Pages\EditPermission::route('/{record}/edit'),
         ];
+    }
+
+    public static function getNavigationBadge(): ?string
+    {
+        return static::getModel()::count();
     }
 }

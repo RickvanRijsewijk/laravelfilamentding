@@ -127,7 +127,7 @@
                         <li class="nav-item">
                             @auth
                             <a href="/admin" class="btn login-button">Admin panel</a>
-                            <a href="/profile" class="btn login-button"><i class="fa-solid fa-user"></i></a>
+                            <!-- <a href="/profile" class="btn login-button"><i class="fa-solid fa-user"></i></a> -->
                             @else
                             <a href="/admin/login" class="btn login-button">Login</a>
                             @endauth

@@ -3,6 +3,7 @@
 namespace App\Providers\Filament;
 
 use App\Filament\Resources\ArticleResource\Widgets\ArticleOverview;
+use App\Filament\Widgets\BackToHomeWidget;
 use DiogoGPinto\AuthUIEnhancer\AuthUIEnhancerPlugin;
 use DiogoGPinto\AuthUIEnhancer\Pages\Auth\AuthUiEnhancerLogin;
 use Filament\Http\Middleware\Authenticate;
@@ -43,6 +44,7 @@ class AdminPanelProvider extends PanelProvider
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 Widgets\AccountWidget::class,
+                BackToHomeWidget::class,
                 ArticleOverview::class,
             ])
             ->middleware([
@@ -59,6 +61,7 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->collapsibleNavigationGroups(false)
             ->plugin(
                 AuthUIEnhancerPlugin::make()
                 ->formPanelPosition('right')

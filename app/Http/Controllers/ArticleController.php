@@ -10,8 +10,8 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $categories = Category::with('articles')->get();
-        return view('articles.index', compact('categories'));
+        $articles = Article::all()->groupBy('category');
+        return view('components.mainheader', compact('articles'));
     }
 
     public function create()
