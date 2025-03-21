@@ -63,7 +63,7 @@ class AdminPanelProvider extends PanelProvider
             ->plugin(
                 AuthUIEnhancerPlugin::make()
                 ->formPanelPosition('right')
-            ->formPanelWidth('40%')
+            ->formPanelWidth('70%')
             ->emptyPanelBackgroundImageOpacity('70%')
             ->emptyPanelBackgroundImageUrl('https://images.pexels.com/photos/466685/pexels-photo-466685.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')
             );
