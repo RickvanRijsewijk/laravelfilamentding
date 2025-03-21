@@ -31,7 +31,6 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login(AuthUiEnhancerLogin::class)
-            ->registration()
             ->passwordReset()
             ->colors([
                 'primary' => Color::Amber,

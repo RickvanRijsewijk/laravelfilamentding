@@ -2,6 +2,13 @@ import { defineConfig } from "vite";
 import laravel from "laravel-vite-plugin";
 import tailwindcss from "@tailwindcss/vite";
 
+// Define refreshPaths
+const refreshPaths = [
+    'resources/views/**/*.blade.php',
+    'resources/js/**/*.js',
+    'resources/css/**/*.css',
+];
+
 export default defineConfig({
     plugins: [
         laravel({

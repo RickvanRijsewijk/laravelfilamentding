@@ -14,7 +14,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Spatie\Permission\Models\Permission as ModelsPermission;
+use App\Models\Permission as ModelsPermission;
 
 class PermissionResource extends Resource
 {

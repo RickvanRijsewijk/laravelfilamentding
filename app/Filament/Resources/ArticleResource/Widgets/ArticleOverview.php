@@ -8,11 +8,15 @@ use App\Models\User;
 use App\Models\Article;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Auth;
 
 class ArticleOverview extends BaseWidget
 {
     protected function getStats(): array
     {
+        $user = Auth::user();
+        $stats = [];
+
         $totalArticles = Article::count();
         $articlesToday = Article::whereDate('created_at', Carbon::today())->count();
         $articlesRemovedToday = Article::onlyTrashed()->whereDate('deleted_at', Carbon::today())->count();
@@ -47,27 +51,33 @@ class ArticleOverview extends BaseWidget
             $totalArticlesIcon = 'heroicon-s-eye';
         }
 
-        return [
-            Stat::make('Total Articles', $totalArticles)
-                ->description("{$articlesToday} added today")
-                ->descriptionIcon($totalArticlesIcon)
-                ->color($totalArticlesColor),
-            Stat::make('Unpublished Articles', $unpublishedArticles)
-                ->description("Unpublished articles count")
-                ->descriptionIcon('heroicon-s-eye')
-                ->color('info'),
-            Stat::make('Published Articles', $publishedArticles)
-                ->description("Published articles count")
-                ->descriptionIcon('heroicon-s-eye')
-                ->color('info'),
-            Stat::make('Total Users', User::count())
+        $stats[] = Stat::make('Total Articles', $totalArticles)
+            ->description("{$articlesToday} added today")
+            ->descriptionIcon($totalArticlesIcon)
+            ->color($totalArticlesColor);
+
+        $stats[] = Stat::make('Unpublished Articles', $unpublishedArticles)
+            ->description("Unpublished articles count")
+            ->descriptionIcon('heroicon-s-eye')
+            ->color('info');
+
+        $stats[] = Stat::make('Published Articles', $publishedArticles)
+            ->description("Published articles count")
+            ->descriptionIcon('heroicon-s-eye')
+            ->color('info');
+
+        if ($user->hasRole('admin')) {
+            $stats[] = Stat::make('Total Users', User::count())
                 ->description("Total users count")
                 ->descriptionIcon('heroicon-s-user')
-                ->color('info'),
-            Stat::make('Average Article Views', $averageArticleViews)
-                ->description("Average article views")
-                ->descriptionIcon($icon)
-                ->color($color)
-        ];
+                ->color('info');
+        }
+
+        $stats[] = Stat::make('Average Article Views', $averageArticleViews)
+            ->description("Average article views")
+            ->descriptionIcon($icon)
+            ->color($color);
+
+        return $stats;
     }
 }
