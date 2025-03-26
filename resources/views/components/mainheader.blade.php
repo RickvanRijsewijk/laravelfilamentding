@@ -8,17 +8,17 @@
 
     .dropdown-menu {
         opacity: 0;
-        transform: translateY(-15px);
+        transform: translateY(-10px);
         visibility: hidden;
         display: block;
-        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     }
 
     .dropdown:hover .dropdown-menu {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0px);
         visibility: visible;
-        transition: opacity 0.3s ease, transform 0.3s ease;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     }
 
     .nav-button {
@@ -145,8 +145,7 @@
                 <div class="col-auto">
                     <ul class="nav">
                         <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="btn btn-secondary dropdown-toggle" role="button" aria-expanded="false">
                                 Werken Onder Architectuur
                                 <i class="fas fa-chevron-down"></i>
                             </a>
@@ -167,8 +166,7 @@
                 <div class="col-auto">
                     <ul class="nav">
                         <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" role="button">
                                 Informatiemanagement
                                 <i class="fas fa-chevron-down"></i>
                             </a>
@@ -189,8 +187,7 @@
                 <div class="col-auto">
                     <ul class="nav">
                         <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" role="button">
                                 Data & Security
                                 <i class="fas fa-chevron-down"></i>
                             </a>
@@ -211,8 +208,7 @@
                 <div class="col-auto">
                     <ul class="nav">
                         <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" role="button">
                                 Applicaties & Tools
                                 <i class="fas fa-chevron-down"></i>
                             </a>
@@ -233,8 +229,7 @@
                 <div class="col-auto">
                     <ul class="nav">
                         <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" role="button">
                                 Governance & Compliance
                                 <i class="fas fa-chevron-down"></i>
                             </a>
@@ -255,8 +250,7 @@
                 <div class="col-auto">
                     <ul class="nav">
                         <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" role="button">
                                 Community & Kennisdeling
                                 <i class="fas fa-chevron-down"></i>
                             </a>
@@ -277,21 +271,12 @@
                 <div class="col-auto">
                     <ul class="nav">
                         <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown">
+                            <a class="btn btn-secondary dropdown-toggle" role="button">
                                 FAQ & Contact
                                 <i class="fas fa-chevron-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                @if(isset($articles['FAQ & Contact']))
-                                @foreach ($articles['FAQ & Contact'] ?? [] as $article)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
-                                </li>
-                                @endforeach
-                                @else
-                                <li><a class="dropdown-item">No articles found</a></li>
-                                @endif
+                            <li><a class="dropdown-item" href="{{ route('faq') }}">FAQ</a></li>
                             </ul>
                         </li>
                     </ul>
