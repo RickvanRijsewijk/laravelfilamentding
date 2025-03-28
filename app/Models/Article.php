@@ -13,6 +13,10 @@ class Article extends Model
 
     protected $fillable = ['title', 'content', 'category_id', 'slug', 'published_at', 'views'];
 
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
     // Generate slug before saving
     protected static function boot()
     {
@@ -58,5 +62,11 @@ class Article extends Model
     {
         $this->slug = Str::slug($this->title);
         return $this;
+    }
+
+    public function getPublishedAtAttribute($value) : bool
+    {
+        return $this->attributes['published_at'] !== null &&
+            now()->greaterThanOrEqualTo($this->attributes['published_at']);
     }
 }

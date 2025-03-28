@@ -7,67 +7,84 @@
     <title>Breda University</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    @vite('resources/js/app.js')
 </head>
+
+<style>
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+</style>
 
 <body class="bg-white">
     <x-mainheader />
 
     <!-- Main Content Section -->
     <main class="container py-4">
-        <h3 class="fs-5 text-black">Welcome to Breda University!</h3>
-        <p>The standard Lorem Ipsum passage, used since the 1500s
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-            nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-            anim id est laborum.<br><br>
+        <h1>Welkom bij Werken Onder Architectuur & Informatiemanagement</h1>
+        <p>Samen bouwen we aan een toekomstbestendige en efficiënte organisatie. Hier vind je alle informatie over hoe we structuur en samenhang brengen in onze processen, systemen en informatievoorziening.</p>
+        <ul>
+            <li>🔹 Wat is Werken Onder Architectuur?</li>
+            <li>🔹 Waarom is informatiemanagement belangrijk?</li>
+            <li>🔹 Snelle links naar kernonderdelen</li>
+            <li>🔹 Laatste nieuws & updates</li>
+        </ul>
 
-            Section 1.10.32 of de Finibus Bonorum et Malorum, written by Cicero in 45 BC
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
-            dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
-            sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore
-            magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis
-            suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in
-            ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas
-            nulla pariatur?<br><br>
+        <h2>Introductie: Wat is Werken Onder Architectuur en Informatiemanagement?</h2>
+        <p>Werken Onder Architectuur betekent dat we bewust en gestructureerd nadenken over hoe we onze processen, systemen en technologie inrichten. Dit helpt ons om efficiënt samen te werken, flexibel in te spelen op veranderingen en onze doelen te behalen.</p>
+        <p>Informatiemanagement gaat over het slim beheren en gebruiken van informatie, zodat iedereen – van student en docent tot management en ondersteunende diensten – de juiste gegevens op het juiste moment heeft.</p>
+        <p>Samen zorgen deze twee disciplines ervoor dat onze organisatie toekomstbestendig blijft!</p>
 
-            1914 translation by H. Rackham
-            But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and
-            I will give you a complete account of the system, and expound the actual teachings of the great explorer of
-            the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself,
-            because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter
-            consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain
-            pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can
-            procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical
-            exercise, except to obtain some advantage from it? But who has any right to find fault with a man who
-            chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no
-            resultant pleasure?<br><br>
+        <h2>Belang van Architectuur en Informatiemanagement</h2>
+        <h3>Waarom is dit cruciaal voor onze organisatie?</h3>
+        <ul>
+            <li>✅ <strong>Betere samenwerking</strong> – Iedereen werkt met dezelfde uitgangspunten en systemen.</li>
+            <li>✅ <strong>Efficiëntie</strong> – Minder dubbel werk en snellere besluitvorming.</li>
+            <li>✅ <strong>Flexibiliteit</strong> – Sneller inspelen op veranderingen en innovaties.</li>
+            <li>✅ <strong>Betrouwbaarheid</strong> – Gegevens zijn veilig, up-to-date en toegankelijk voor wie ze nodig heeft.</li>
+        </ul>
+        <p>Door samen te werken volgens een duidelijke architectuur en informatiemanagement-strategie, zorgen we ervoor dat iedereen binnen de organisatie optimaal kan presteren.</p>
 
-            Section 1.10.33 of de Finibus Bonorum et Malorum, written by Cicero in 45 BC
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
-            sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum
-            facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-            impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor
-            repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et
-            voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus,
-            ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores
-            repellat.<br><br>
+        <h2>Snelle links naar kernonderdelen</h2>
+        <ul>
+            <li>📌 <strong>Architectuurprincipes</strong> – De basisregels voor onze systemen en processen.</li>
+            <li>📌 <strong>Projecten & initiatieven</strong> – Bekijk lopende en geplande verbeteringen.</li>
+            <li>📌 <strong>Beleid & richtlijnen</strong> – Handige documenten en kaders.</li>
+            <li>📌 <strong>Hulpmiddelen & ondersteuning</strong> – Tools, trainingen en contactpersonen.</li>
+        </ul>
 
-            1914 translation by H. Rackham
-            On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and
-            demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain
-            and trouble that are bound to ensue; and equal blame belongs to those who fail in their duty through
-            weakness of will, which is the same as saying through shrinking from toil and pain. These cases are
-            perfectly simple and easy to distinguish. In a free hour, when our power of choice is untrammelled and when
-            nothing prevents our being able to do what we like best, every pleasure is to be welcomed and every pain
-            avoided. But in certain circumstances and owing to the claims of duty or the obligations of business it will
-            frequently occur that pleasures have to be repudiated and annoyances accepted. The wise man therefore always
-            holds in these matters to this principle of selection: he rejects pleasures to secure other greater
-            pleasures, or else he endures pains to avoid worse pains.
-        </p>
+        <h2>Nieuws & updates</h2>
+        <p>📢 Blijf op de hoogte van de laatste ontwikkelingen!</p>
+        <p>Hier vind je updates over nieuwe projecten, beleidswijzigingen, succesvolle implementaties en andere belangrijke mededelingen.</p>
+        <ul>
+            <li>📅 <strong>Beveiliging update:</strong> Hoe we data nog beter beschermen</li>
+            <li>📅 <strong>Training informatiemanagement</strong> – schrijf je in!</li>
+        </ul>
+        <form method="POST" action="{{ route('subscribe') }}" class="p-4 rounded bg-light" style="max-width: 500px;">
+            @csrf
+
+            @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            <label for="email" class="form-label">Wil je niets missen? Schrijf je in voor onze nieuwsbrief!</label>
+
+            <div class="input-group mb-3">
+                <input type="email" name="email" id="email" placeholder="E-mailadres..." class="form-control" required>
+                <button type="submit" class="btn btn-primary">
+                    Inschrijven
+                </button>
+            </div>
+
+            @error('email')
+            <div class="text-danger mb-2">{{ $message }}</div>
+        @enderror
+
     </main>
 
     <!-- Footer Section -->

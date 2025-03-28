@@ -40,6 +40,11 @@ class ArticleController extends Controller
     public function show($slug)
     {
         $article = Article::where('slug', $slug)->firstOrFail();
+
+        if (is_null($article->published_at)) {
+            abort(404, 'Sorry, this article is not published yet.');
+        }
+
         return view('articles.show', compact('article'));
     }
 

@@ -27,6 +27,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body class="font-sans antialiased">
@@ -51,6 +52,7 @@
     <script src="http://localhost:35729/livereload.js"></script>
     @endenv
     @yield('scripts')
+    @livewireScripts
 </body>
 
 </html>

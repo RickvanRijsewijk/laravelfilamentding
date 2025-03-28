@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfilePageController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SubscriptionController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -42,13 +42,13 @@ Route::get('/faq', function () {
             'answer' => '<p>This is a test answer to verify the formatting.</p>'
         ]
     ];
-    
-    
+
+
 
     return view('faq', compact('faqs'));
 })->name('faq');
 
-
+Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
 
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/articles/category/{category_id}', [ArticleController::class, 'getArticlesByCategory']);

@@ -1,4 +1,5 @@
 <x-filament::widget>
+    // TODO: Add the following code snippet to the file
     <style>
         .btn-primary {
             background-color: #3490dc;

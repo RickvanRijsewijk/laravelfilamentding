@@ -131,157 +131,17 @@
                             @else
                             <a href="/admin/login" class="btn login-button">Login</a>
                             @endauth
-                            
+
                         </li>
                     </ul>
-                        
+
                 </div>
             </nav>
         </div>
     </header>
     <nav class="bg-white border-bottom p-2">
         <div class="container-nav">
-            <div class="row justify-content-center">
-                <div class="col-auto">
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" role="button" aria-expanded="false">
-                                Werken Onder Architectuur
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                @if(isset($articles['Werken Onder Architectuur']))
-                                @foreach ($articles['Werken Onder Architectuur'] as $article)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
-                                </li>
-                                @endforeach
-                                @else
-                                <li><a class="dropdown-item">No articles found</a></li>
-                                @endif
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-auto">
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" role="button">
-                                Informatiemanagement
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                @if(isset($articles['Informatiemanagement']))
-                                @foreach ($articles['Informatiemanagement'] as $article)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
-                                </li>
-                                @endforeach
-                                @else
-                                <li><a class="dropdown-item">No articles found</a></li>
-                                @endif
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-auto">
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" role="button">
-                                Data & Security
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                @if(isset($articles['Data & Security']))
-                                @foreach ($articles['Data & Security'] ?? [] as $article)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
-                                </li>
-                                @endforeach
-                                @else
-                                <li><a class="dropdown-item">No articles found</a></li>
-                                @endif
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-auto">
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" role="button">
-                                Applicaties & Tools
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                @if(isset($articles['Applicaties & Tools']))
-                                @foreach ($articles['Applicaties & Tools'] ?? [] as $article)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
-                                </li>
-                                @endforeach
-                                @else
-                                <li><a class="dropdown-item">No articles found</a></li>
-                                @endif
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-auto">
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" role="button">
-                                Governance & Compliance
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                @if(isset($articles['Governance & Compliance']))
-                                @foreach ($articles['Governance & Compliance'] ?? [] as $article)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
-                                </li>
-                                @endforeach
-                                @else
-                                <li><a class="dropdown-item">No articles found</a></li>
-                                @endif
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-auto">
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" role="button">
-                                Community & Kennisdeling
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                @if(isset($articles['Community & Kennisdeling']))
-                                @foreach ($articles['Community & Kennisdeling'] ?? [] as $article)
-                                <li><a class="dropdown-item"
-                                        href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a>
-                                </li>
-                                @endforeach
-                                @else
-                                <li><a class="dropdown-item">No articles found</a></li>
-                                @endif
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-auto">
-                    <ul class="nav">
-                        <li class="nav-item dropdown">
-                            <a class="btn btn-secondary dropdown-toggle" role="button">
-                                FAQ & Contact
-                                <i class="fas fa-chevron-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('faq') }}">FAQ</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <livewire:DropdownMenu />
         </div>
     </nav>
 </div>
