@@ -1,27 +1,47 @@
 <style>
-.footer-orange-bar {
-    background-color: #fa890a;
-    color: white;
-    padding: 20px 0;
-}
+    .footer-orange-bar {
+        background-color: #fa890a;
+        color: white;
+        padding: 20px 0;
+    }
 
-.footer-orange-bar a {
-    color: white;
-    text-decoration: none;
-}
+    .footer-orange-bar a {
+        color: white;
+        text-decoration: none;
+    }
 
-.footer-orange-bar a:hover {
-    text-decoration: underline;
-}
+    .footer-orange-bar a:hover {
+        text-decoration: underline;
+    }
 
-.footer-icons a {
-    color: white;
-    margin-left: 10px;
-}
+    .footer-icons a {
+        color: white;
+        margin-left: 10px;
+    }
 
-.footer-icons a:hover {
-    color: #ddd;
-}
+    .footer-icons a:hover {
+        color: #ddd;
+    }
+
+    .submit-button {
+        --bs-btn-color: #FFFFFF;
+        --bs-btn-bg: rgb(10, 114, 250);
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        transform-origin: center;
+    }
+    .submit-button:hover {
+        --bs-btn-color: #fa890a;
+        --bs-btn-bg: #fa890a;
+        --bs-btn-hover-color: #FFFFFF;
+        --bs-btn-hover-bg: #fa890a;
+        transform: scale(1.1);
+    }
+
+    .submit-button:focus {
+        --bs-btn-color: #FFFFFF;
+        --bs-btn-bg: #fa890a;
+        transform: scale(1.1);
+    }
 </style>
 
 <footer class="bg-white border-top p-3 mt-4 text-center">
@@ -46,7 +66,7 @@
 
             <div class="input-group mb-3">
                 <input type="email" name="email" id="email" placeholder="E-mailadres..." class="form-control" required>
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary submit-button">
                     Inschrijven
                 </button>
             </div>
@@ -58,6 +78,21 @@
         <p class="text-black">&copy; 2025 Breda University. All rights reserved.</p>
         
     </div>
+    <script>
+        // Save the scroll position before the page is refreshed
+        window.addEventListener('beforeunload', function () {
+            localStorage.setItem('scrollPosition', window.scrollY);
+        });
+    
+        // Restore the scroll position after the page loads
+        window.addEventListener('load', function () {
+            const scrollPosition = localStorage.getItem('scrollPosition');
+            if (scrollPosition) {
+                window.scrollTo(0, parseInt(scrollPosition, 10));
+                localStorage.removeItem('scrollPosition'); // Optional: Clear the saved position
+            }
+        });
+    </script>
 </footer>
 
 <!-- Add some margin to move the orange bar further down -->

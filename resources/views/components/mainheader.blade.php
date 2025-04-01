@@ -22,7 +22,7 @@
     }
 
     .nav-button {
-        color: #000000;
+        color:rgb(255, 0, 0);
         background-color: #FFFFFF;
         position: relative;
         text-align: center;
@@ -49,11 +49,31 @@
         position: relative;
         padding-right: 30px;
         border: none;
+        text-decoration: none;
+        overflow: hidden;
+        transition: color 0.3s ease, background-color 0.3s ease;
+    }
+
+    .dropdown-toggle::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: currentColor;
+        visibility: hidden;
+        transition: width 0.3s ease, visibility 0.3s ease;
     }
 
     .dropdown-toggle:hover {
         color: black;
         background-color: #f8f9fa;
+    }
+
+    .dropdown-toggle:hover::after {
+        width: 100%;
+        visibility: visible;
     }
 
     .dropdown-toggle:active {
@@ -66,7 +86,7 @@
         top: 50%;
         right: 10px;
         transform: translateY(-50%) rotate(0deg);
-        transition: transform 0.3s ease;
+        transition: transform 0.2s ease;
         font-size: 1em;
     }
 
@@ -90,7 +110,6 @@
         transition: all 0.3s ease;
     }
 
-
     .sticky-top.scrolled {
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     }
@@ -106,9 +125,17 @@
     .login-button {
         --bs-btn-color: #FFFFFF;
         --bs-btn-bg: #6c757d;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        transform-origin: center;
+    }
+    .login-button:hover {
+        --bs-btn-color: #fa890a;
+        --bs-btn-bg: #fa890a;
         --bs-btn-hover-color: #FFFFFF;
         --bs-btn-hover-bg: #fa890a;
+        transform: scale(1.1);
     }
+
 </style>
 
 <div class="header-wrapper sticky-top">
