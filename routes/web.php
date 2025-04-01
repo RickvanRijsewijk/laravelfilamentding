@@ -42,8 +42,8 @@ Route::get('/faq', function () {
             'answer' => '<p>This is a test answer to verify the formatting.</p>'
         ]
     ];
-
-
+    
+    
 
     return view('faq', compact('faqs'));
 })->name('faq');

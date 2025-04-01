@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\ArticleResource\Widgets;
 
+use App\Models\Subscription;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use App\Models\User;
@@ -23,6 +24,7 @@ class ArticleOverview extends BaseWidget
         $unpublishedArticles = Article::whereNull('published_at')->count();
         $publishedArticles = Article::whereNotNull('published_at')->count();
         $averageArticleViews = round(Article::avg('views'), 1);
+        $totalSubscriptions = Subscription::count();
 
         $previousAverageViews = Cache::get('previous_average_views', $averageArticleViews);
 
@@ -78,6 +80,10 @@ class ArticleOverview extends BaseWidget
             ->descriptionIcon($icon)
             ->color($color);
 
+        $stats[] = Stat::make('Total Subscriptions', $totalSubscriptions)
+            ->description("Total subscriptions count")
+            ->descriptionIcon('heroicon-s-envelope')
+            ->color('info');
         return $stats;
     }
 }

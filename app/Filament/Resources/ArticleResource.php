@@ -5,14 +5,15 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ArticleResource\Pages;
 use App\Models\Article;
 use App\Models\Category;
-use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Filters\TernaryFilter;
 use Filament\Tables\Table;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\Log;
 use Filament\Notifications\Notification;
 use Filament\Tables\Columns\TextColumn;
@@ -69,13 +70,20 @@ class ArticleResource extends Resource
                     ->sortable()
                     ->placeholder('NULL'),
                 TextColumn::make('published_at')
-                    ->dateTime()
+                    ->dateTime('F j, Y H:i:s')
                     ->sortable()
                     ->placeholder('Not published')
-                    
             ])
             ->filters([
-                //
+                TernaryFilter::make('published')
+                ->label('Published')
+                ->placeholder('All')
+                ->trueLabel('Published')
+                ->falseLabel('Not Published')
+                ->queries(
+                    true: fn (\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Database\Eloquent\Builder => $query->whereNotNull('published_at'),
+                    false: fn (\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Database\Eloquent\Builder => $query->whereNull('published_at'),
+                ),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
