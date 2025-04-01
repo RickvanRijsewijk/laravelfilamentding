@@ -48,12 +48,6 @@ class ArticleController extends Controller
         return view('articles.show', compact('article'));
     }
 
-    public function someMethod()
-    {
-        $articles = Article::with('category')->get()->groupBy('category.name');
-        return view('your-view', compact('articles'));
-    }
-
     public function getArticlesByCategory($category_id)
     {
         $articles = Article::where('category_id', $category_id)->get();

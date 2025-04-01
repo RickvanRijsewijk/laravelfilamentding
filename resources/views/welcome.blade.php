@@ -63,28 +63,7 @@
             <li>📅 <strong>Beveiliging update:</strong> Hoe we data nog beter beschermen</li>
             <li>📅 <strong>Training informatiemanagement</strong> – schrijf je in!</li>
         </ul>
-        <form method="POST" action="{{ route('subscribe') }}" class="p-4 rounded bg-light" style="max-width: 500px;">
-            @csrf
-
-            @if(session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-
-            <label for="email" class="form-label">Wil je niets missen? Schrijf je in voor onze nieuwsbrief!</label>
-
-            <div class="input-group mb-3">
-                <input type="email" name="email" id="email" placeholder="E-mailadres..." class="form-control" required>
-                <button type="submit" class="btn btn-primary">
-                    Inschrijven
-                </button>
-            </div>
-
-            @error('email')
-            <div class="text-danger mb-2">{{ $message }}</div>
-        @enderror
-
+        
     </main>
 
     <!-- Footer Section -->

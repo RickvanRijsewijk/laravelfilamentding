@@ -5,3 +5,47 @@
 @import '../../../../vendor/filament/filament/resources/css/base.css';
 
 @config './tailwind.config.js';
+
+.btn-underline {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+}
+
+.btn-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+.btn-underline:hover::after {
+    width: 100%;
+}
+
+.filament-sidebar .filament-sidebar-item a {
+    position: relative;
+    text-decoration: none;
+    color: inherit;
+    overflow: hidden;
+}
+
+.filament-sidebar .filament-sidebar-item a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: currentColor;
+    transition: width 0.3s ease;
+}
+
+.filament-sidebar .filament-sidebar-item a:hover::after {
+    width: 100%;
+}

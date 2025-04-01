@@ -9,6 +9,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\URL;
 
 class SubscriptionEmail extends Mailable
 {
@@ -25,9 +26,11 @@ class SubscriptionEmail extends Mailable
 
     public function build()
     {
+        $unsubscribeUrl = URL::signedRoute('unsubscribe', ['email' => $this->email->email]);
+
         return $this->subject($this->email->subject)
             ->view('emails.subscription')
-            ->with(['email' => $this->email, 'body' => $this->email->body]);
+            ->with(['email' => $this->email, 'body' => $this->email->body, 'unsubscribeUrl' => $unsubscribeUrl]);
     }
 
     /**

@@ -28,7 +28,35 @@
     <div class="container">
         <a href="/"><img src="{{ asset('images/BUas_logo.png') }}" alt="Footer Image" class="img-fluid mb-2 float-end"
                 style="width: 200px; height: auto;"></a>
+        <form method="POST" action="{{ route('subscribe') }}" class="p-4 rounded bg-light" style="max-width: 500px;">
+            @csrf
+
+            @if(session('success'))
+                <div class="alert alert-success animate__animated animate__fadeInUp">
+                    {{ session('success') }}
+                </div>
+            @endif
+            @if(session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+            <h5 class="text-black">Nieuwsbrief</h5>
+            <label for="email" class="form-label">Wil je niets missen? Schrijf je in voor onze nieuwsbrief!</label>
+
+            <div class="input-group mb-3">
+                <input type="email" name="email" id="email" placeholder="E-mailadres..." class="form-control" required>
+                <button type="submit" class="btn btn-primary">
+                    Inschrijven
+                </button>
+            </div>
+
+            @error('email')
+                <div class="text-danger mb-2">{{ $message }}</div>
+            @enderror
+        </form>        
         <p class="text-black">&copy; 2025 Breda University. All rights reserved.</p>
+        
     </div>
 </footer>
 

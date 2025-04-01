@@ -2,6 +2,9 @@
 
 namespace App\Filament\Resources\ArticleResource\Widgets;
 
+use App\Filament\Resources\ArticleResource;
+use App\Filament\Resources\SubscriptionResource;
+use App\Filament\Resources\UserResource;
 use App\Models\Subscription;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
@@ -13,6 +16,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ArticleOverview extends BaseWidget
 {
+    protected ?string $heading = 'Analytics';
+    protected static ?string $pollingInterval = '10s';
+
     protected function getStats(): array
     {
         $user = Auth::user();
@@ -35,7 +41,7 @@ class ArticleOverview extends BaseWidget
             $color = 'danger';
             $icon = 'heroicon-m-arrow-trending-down';
         } else {
-            $color = 'info';
+            $color = 'primary';
             $icon = 'heroicon-s-eye';
         }
 
@@ -49,41 +55,55 @@ class ArticleOverview extends BaseWidget
             $totalArticlesColor = 'danger';
             $totalArticlesIcon = 'heroicon-m-arrow-trending-down';
         } else {
-            $totalArticlesColor = 'info';
+            $totalArticlesColor = 'primary';
             $totalArticlesIcon = 'heroicon-s-eye';
         }
 
         $stats[] = Stat::make('Total Articles', $totalArticles)
             ->description("{$articlesToday} added today")
             ->descriptionIcon($totalArticlesIcon)
-            ->color($totalArticlesColor);
+            ->url(ArticleResource::getUrl('index'))
+            ->color($totalArticlesColor)
+            ->extraAttributes(['class' => 'custom-stat-widget']);
 
         $stats[] = Stat::make('Unpublished Articles', $unpublishedArticles)
             ->description("Unpublished articles count")
+            ->url(ArticleResource::getUrl('index', ['tableFilters[published][value]' => 'false']))
             ->descriptionIcon('heroicon-s-eye')
-            ->color('info');
+            ->color('primary')
+            ->extraAttributes(['class' => 'custom-stat-widget']);
 
         $stats[] = Stat::make('Published Articles', $publishedArticles)
+            ->url(ArticleResource::getUrl('index', ['tableFilters[published][value]' => 'true']))
             ->description("Published articles count")
             ->descriptionIcon('heroicon-s-eye')
-            ->color('info');
+            ->color('primary')
+            ->extraAttributes(['class' => 'custom-stat-widget']);
 
         if ($user->hasRole('admin')) {
             $stats[] = Stat::make('Total Users', User::count())
                 ->description("Total user accounts")
+                ->url(UserResource::getUrl('index'))
                 ->descriptionIcon('heroicon-s-user')
-                ->color('info');
+                ->color('primary')
+                ->extraAttributes(['class' => 'custom-stat-widget']);
         }
 
         $stats[] = Stat::make('Average Article Views', $averageArticleViews)
             ->description("Average article views")
             ->descriptionIcon($icon)
-            ->color($color);
+            ->color($color)
+            ->extraAttributes(['class' => 'custom-stat-widget']);
 
         $stats[] = Stat::make('Total Subscriptions', $totalSubscriptions)
             ->description("Total subscriptions count")
+            ->url(SubscriptionResource::getUrl('index'))
             ->descriptionIcon('heroicon-s-envelope')
-            ->color('info');
+            ->color('primary')
+            ->extraAttributes([
+                'class' => 'custom-stat-widget'
+        ]);
+
         return $stats;
     }
 }

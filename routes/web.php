@@ -40,6 +40,10 @@ Route::get('/faq', function () {
         [
             'question' => 'Test question',
             'answer' => '<p>This is a test answer to verify the formatting.</p>'
+        ],
+        [
+            'question' => 'Test question',
+            'answer' => '<p>This is a test answer to verify the formatting.</p>'
         ]
     ];
     
@@ -49,6 +53,7 @@ Route::get('/faq', function () {
 })->name('faq');
 
 Route::post('/subscribe', [SubscriptionController::class, 'subscribe'])->name('subscribe');
+Route::get('/unsubscribe', [SubscriptionController::class, 'unsubscribe'])->name('unsubscribe');
 
 Route::get('/articles/{slug}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/articles/category/{category_id}', [ArticleController::class, 'getArticlesByCategory']);

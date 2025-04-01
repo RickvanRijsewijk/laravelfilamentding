@@ -7,6 +7,8 @@
     <title>BUas | {{ $article->title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -202,31 +204,34 @@
     $(document).ready(function() {
         $('#loadArticlesBtn').on('click', function() {
             var categoryId = $(this).data('category-id');
+            var otherArticles = $('#otherArticles');
 
             $(this).hide();
             $.ajax({
                 url: '/articles/category/' + categoryId,
                 method: 'GET',
                 success: function(response) {
-                    $('#otherArticles').empty();
+                    otherArticles.empty();
+                    otherArticles.show(); // Show the container before appending
 
-                    response.forEach(function(article) {
+                    response.forEach(function(article, index) {
                         var shortContent = article.content.length > 150 ?
                             article.content.substring(0, 150) + '...' :
                             article.content;
 
-                        $('#otherArticles').append(
-                            '<div class="article-item">' +
-                            '<h2>' + article.title + '</h2>' +
-                            '<p>' + shortContent + '</p>' +
-                            '<a href="/articles/' + article.slug +
-                            '">Lees meer</a>' +
-                            '</div>'
-                        );
-                    });
+                        var articleItem = $('<div class="article-item"></div>').hide();
+                        articleItem.append('<h2>' + article.title + '</h2>');
+                        articleItem.append('<p>' + shortContent + '</p>');
+                        articleItem.append('<a href="/articles/' + article.slug + '">Lees meer</a>');
 
-                    // Show the #otherArticles div
-                    $('#otherArticles').show();
+                        otherArticles.append(articleItem);
+
+                        // Animate each item with a delay
+                        articleItem.delay(200 * index).queue(function(next) {
+                            $(this).addClass('animate__animated animate__fadeInUp').show('slow');
+                            next();
+                        });
+                    });
                 },
                 error: function(error) {
                     console.error("Error fetching articles:", error);
