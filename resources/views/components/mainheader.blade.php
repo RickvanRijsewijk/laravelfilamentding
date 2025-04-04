@@ -1,6 +1,3 @@
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
 <?php
 use App\Models\Category;
 $categories = Category::with('articles')->get()->mapWithKeys(function ($category) {
@@ -227,26 +224,5 @@ $categories = Category::with('articles')->get()->mapWithKeys(function ($category
                 </div>
             </div>
         </nav>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const navbarToggler = document.querySelector(".navbar-toggler");
-            const navbarCollapse = document.querySelector(".navbar-collapse");
-    
-            navbarToggler.addEventListener("click", function () {
-                navbarCollapse.classList.toggle("show"); // Toggle the navbar visibility properly
-            });
-    
-            // Close navbar when clicking outside (only in mobile mode)
-            document.addEventListener("click", function (event) {
-                if (!navbarToggler.contains(event.target) && !navbarCollapse.contains(event.target)) {
-                    navbarCollapse.classList.remove("show");
-                }
-            });
-        });
-    </script>
-    
-
+    </div>    
 </body>

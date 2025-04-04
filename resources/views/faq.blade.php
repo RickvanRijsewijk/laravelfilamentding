@@ -51,6 +51,22 @@
         color: #6c757d !important;
         /* Arrow color when active */
         background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='%23333' xmlns='http://www.w3.org/2000/svg'%3e%3cpath fill-rule='evenodd' d='M0 8a1 1 0 0 1 1-1h14a1 1 0 1 1 0 2H1a1 1 0 0 1-1-1z' clip-rule='evenodd'/%3e%3c/svg%3e") !important;
+        transition: transform 0.3s ease; /* Smooth arrow rotation */
+    }
+
+    .accordion-collapse {
+        transition: height 0.3s ease; /* Smooth height transition */
+    }
+
+    .accordion-collapse.collapse {
+        display: block; /* Prevent snapping by keeping the display consistent */
+        height: 0; /* Start with height 0 */
+        overflow: hidden; /* Hide overflowing content */
+        transition: height 0.3s ease; /* Smooth height transition */
+    }
+
+    .accordion-collapse.collapse.show {
+        height: auto; /* Expand to full height */
     }
 </style>
 
