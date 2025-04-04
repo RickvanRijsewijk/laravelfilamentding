@@ -191,7 +191,7 @@ $categories = Category::with('articles')->get()->mapWithKeys(function ($category
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
+                        <li class="nav-item me-2">
                             @auth
                             <a href="/admin" class="btn login-button">Go to Admin panel</a>
                             @else
