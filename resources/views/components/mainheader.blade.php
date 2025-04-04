@@ -1,7 +1,57 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<?php
+use App\Models\Category;
+$categories = Category::with('articles')->get()->mapWithKeys(function ($category) {
+        return [$category->name => $category->articles];
+    });
+?>
 
 <style>
+
+    @media (min-width: 992px) {
+
+        .navbar-nav {
+            flex-wrap: wrap;
+        }
+
+        .navbar .dropdown-menu {
+            position: absolute;
+            left: 0;
+            right: auto;
+            width: max-content;
+            z-index: 1050;
+            white-space: nowrap;
+        }
+
+        .navbar .dropdown-menu.show {
+            display: block;
+            top: 100%;
+            left: 0;
+        }
+    
+        .navbar-nav {
+            justify-content: flex-end;
+        }
+
+
+        .dropdown-menu {
+            text-align: left;
+        }
+
+        .navbar-expand-lg .navbar-nav .nav-link {
+            padding-right: 1.5rem;
+        }
+        .navbar .dropdown-menu {
+            position: absolute; 
+            left: 0;
+            right: auto;
+            width: max-content;
+            z-index: 1050;
+        }
+    }
+
     .dropdown-toggle::after {
         content: none;
     }
@@ -10,7 +60,7 @@
         opacity: 0;
         transform: translateY(-10px);
         visibility: hidden;
-        display: block;
+        display: none;
         transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     }
 
@@ -18,36 +68,16 @@
         opacity: 1;
         transform: translateY(0px);
         visibility: visible;
+        display: block;
         transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
     }
 
-    .nav-button {
-        color:rgb(255, 0, 0);
-        background-color: #FFFFFF;
-        position: relative;
-        text-align: center;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        padding-right: 30px;
-        border: none;
-    }
-
-    .nav-button:hover {
-        color: black;
-        background-color: #f8f9fa;
-    }
-
-    .nav-button:active {
-        color: black !important;
-        background-color: #f8f9fa !important;
-    }
 
     .dropdown-toggle {
         color: #000000;
         background-color: #FFFFFF;
         position: relative;
-        padding-right: 30px;
+        padding-right: 30px !important;
         border: none;
         text-decoration: none;
         overflow: hidden;
@@ -136,41 +166,87 @@
         transform: scale(1.1);
     }
 
+    /* .nav-link {
+        position: relative;
+        text-align: center;
+        align-items: center;
+        display: flex;
+        justify-content: center; 
+        padding-right: 30px;
+        border: none;
+    } */
+
 </style>
 
-<div class="header-wrapper sticky-top">
-    <header class="bg-white shadow-sm p-3 border-bottom">
-        <div class="container-header ml-4">
-            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+<body>
+    <div class="header-wrapper sticky-top">
+        <nav class="navbar navbar-expand-lg bg-body-light">
+            <div class="container-fluid">
                 <a class="navbar-brand" href="/">
-                    <x-application-logo />
+                    <img src="{{ asset('images/BUas_logo.png') }}" alt="BUas Logo" class="img" 
+                        style="max-height: {{ Route::currentRouteName() === 'dashboard' ? '50px' : '80px' }};">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             @auth
-                            <a href="/admin" class="btn login-button">Admin panel</a>
-                            <!-- <a href="/profile" class="btn login-button"><i class="fa-solid fa-user"></i></a> -->
+                            <a href="/admin" class="btn login-button">Go to Admin panel</a>
                             @else
                             <a href="/admin/login" class="btn login-button">Login</a>
                             @endauth
-
+                        </li>
+                        @foreach ($categories as $categoryName => $articles)
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="dropdown-{{ $loop->index }}" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ $categoryName }}
+                                    <i class="fas fa-chevron-down"></i>
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdown-{{ $loop->index }}">
+                                    @forelse ($articles as $article)
+                                        <li><a class="dropdown-item" href="{{ route('articles.show', $article->slug) }}">{{ $article->title }}</a></li>
+                                    @empty
+                                        <li><a class="dropdown-item">No articles found</a></li>
+                                    @endforelse
+                                </ul>
+                            </li>
+                        @endforeach
+                        
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="faqDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                FAQ & Contact
+                                <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="faqDropdown">
+                                <li><a class="dropdown-item" href="{{ route('faq') }}">FAQ</a></li>
+                            </ul>
                         </li>
                     </ul>
-
                 </div>
-            </nav>
-        </div>
-    </header>
-    <nav class="bg-white border-bottom p-2">
-        <div class="container-nav">
-            <livewire:DropdownMenu />
-        </div>
-    </nav>
-</div>
+            </div>
+        </nav>
+    </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const navbarToggler = document.querySelector(".navbar-toggler");
+            const navbarCollapse = document.querySelector(".navbar-collapse");
+    
+            navbarToggler.addEventListener("click", function () {
+                navbarCollapse.classList.toggle("show"); // Toggle the navbar visibility properly
+            });
+    
+            // Close navbar when clicking outside (only in mobile mode)
+            document.addEventListener("click", function (event) {
+                if (!navbarToggler.contains(event.target) && !navbarCollapse.contains(event.target)) {
+                    navbarCollapse.classList.remove("show");
+                }
+            });
+        });
+    </script>
+    
+
+</body>

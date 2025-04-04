@@ -125,18 +125,37 @@
         .load-more-btn {
             display: block;
             width: 100%;
-            margin-top: 2rem;
             background-color: #007bff;
             color: white;
             padding: 0.75rem;
             text-align: center;
             border-radius: 5px;
             font-size: 1.1rem;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+        }
+
+        .load-more-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: white;
+            transition: width 1s ease;
         }
 
         .load-more-btn:hover {
             background-color: #0056b3;
             cursor: pointer;
+            transform: scale(1.1);
+        }
+
+        .load-more-btn:hover::after {
+            width: 100%;
         }
 
         .other-articles {
@@ -145,6 +164,62 @@
 
         .article-item {
             margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            position: relative;
+            background-color: #3490dc;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            text-decoration: none;
+            display: inline-block;
+            overflow: hidden;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            --bs-btn-color: #fa890a;
+            --bs-btn-bg: #fa890a;
+            --bs-btn-hover-color: #FFFFFF;
+            --bs-btn-hover-bg: #fa890a;
+            transform: scale(1.1);
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #ffffff;
+            transition: width 0.3s ease;
+        }
+
+        .btn-primary:hover::after {
+            width: 100%;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            margin-top: 1rem;
+            background-color: #007bff;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background-color: #fa890a;
+            color: #FFFFFF;
+            transform: scale(1.1);
+        }
+
+        .read-more-btn i {
+            margin-right: 0.5rem;
         }
     </style>
 </head>
@@ -178,9 +253,7 @@
 
             <div class="article-footer">
                 <div class="d-flex justify-content-between align-items-center">
-                    <a href="{{ route('home') }}" class="btn back-btn">
-                        <i class="fas fa-home"></i> Back to Home
-                    </a>
+                    <a href="{{ route('home') }}" class="btn btn-primary back-btn"><i class="fas fa-home"></i> Back to Home</a>
                     @if($article->category)
                     <button id="loadArticlesBtn" class="btn btn-outline-secondary load-more-btn w-50"
                         data-category-id="{{ $article->category->id }}">
@@ -222,7 +295,7 @@
                         var articleItem = $('<div class="article-item"></div>').hide();
                         articleItem.append('<h2>' + article.title + '</h2>');
                         articleItem.append('<p>' + shortContent + '</p>');
-                        articleItem.append('<a href="/articles/' + article.slug + '">Lees meer</a>');
+                        articleItem.append('<a class="read-more-btn" href="/articles/' + article.slug + '">Lees meer</a>');
 
                         otherArticles.append(articleItem);
 

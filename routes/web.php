@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\ProfilePageController;
 use App\Http\Controllers\SubscriptionController;
+use App\Models\Category;
 
 Route::get('/', function () {
     return view('welcome');
@@ -13,6 +14,16 @@ Route::get('/', function () {
 //     Auth::logout();
 //     return redirect('/');
 // })->name('logout');
+
+Route::get('/test', function () {
+    // Fetch categories and their articles
+    $categories = Category::with('articles')->get()->mapWithKeys(function ($category) {
+        return [$category->name => $category->articles];
+    });
+
+    // Pass the categories to the view
+    return view('test', compact('categories'));
+})->name('test');
 
 Route::get('/faq', function () {
     $faqs = [

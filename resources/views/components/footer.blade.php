@@ -79,23 +79,20 @@
         
     </div>
     <script>
-        // Save the scroll position before the page is refreshed
         window.addEventListener('beforeunload', function () {
             localStorage.setItem('scrollPosition', window.scrollY);
         });
     
-        // Restore the scroll position after the page loads
         window.addEventListener('load', function () {
             const scrollPosition = localStorage.getItem('scrollPosition');
             if (scrollPosition) {
                 window.scrollTo(0, parseInt(scrollPosition, 10));
-                localStorage.removeItem('scrollPosition'); // Optional: Clear the saved position
+                localStorage.removeItem('scrollPosition');
             }
         });
     </script>
 </footer>
 
-<!-- Add some margin to move the orange bar further down -->
 <div class="mt-4"></div>
 
 <div class="footer-orange-bar">
