@@ -75,7 +75,6 @@
                 <div class="text-danger mb-2">{{ $message }}</div>
             @enderror
         </form>        
-        <p class="text-black">&copy; 2025 Breda University. All rights reserved.</p>
         
     </div>
     <script>

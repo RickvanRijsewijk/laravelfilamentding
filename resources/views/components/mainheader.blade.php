@@ -163,15 +163,52 @@ $categories = Category::with('articles')->get()->mapWithKeys(function ($category
         transform: scale(1.1);
     }
 
-    /* .nav-link {
+    /* Custom styles for the navbar-toggler-icon */
+    .navbar-toggler-icon {
+        display: inline-block;
+        width: 30px;
+        height: 3px;
+        background-color: #333; /* Middle line color */
         position: relative;
-        text-align: center;
-        align-items: center;
-        display: flex;
-        justify-content: center; 
-        padding-right: 30px;
-        border: none;
-    } */
+        transition: visibility 0.3s ease-in-out;
+        margin-bottom: 5px;
+    }
+
+    .navbar-toggler-icon::before,
+    .navbar-toggler-icon::after {
+        content: '';
+        display: block;
+        width: 30px;
+        height: 3px;
+        background-color: #333; /* Same color as the main line */
+        position: absolute;
+        transition: all 0.3s ease-in-out; /* Smooth transition for top and bottom lines */
+    }
+
+    .navbar-toggler-icon::before {
+        top: -8px; /* Position the top line */
+    }
+
+    .navbar-toggler-icon::after {
+        top: 8px; /* Position the bottom line */
+    }
+
+    /* When the navbar is expanded, animate the lines to form an "X" */
+    .navbar-toggler:not(.collapsed) .navbar-toggler-icon {
+        visibility: hidden; /* Hide the middle line */
+    }
+
+    .navbar-toggler:not(.collapsed) .navbar-toggler-icon::before {
+        transform: rotate(45deg);
+        top: 0; /* Move to the center */
+        visibility: visible; 
+    }
+
+    .navbar-toggler:not(.collapsed) .navbar-toggler-icon::after {
+        transform: rotate(-45deg);
+        top: 0; /* Move to the center */
+        visibility: visible; 
+    }
 
 </style>
 
@@ -183,7 +220,7 @@ $categories = Category::with('articles')->get()->mapWithKeys(function ($category
                     <img src="{{ asset('images/BUas_logo.png') }}" alt="BUas Logo" class="img" 
                         style="max-height: {{ Route::currentRouteName() === 'dashboard' ? '50px' : '80px' }};">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
